@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "../layout/Layout";
 
 const Apresentacao = lazy(() => import("../../pages/Apresentacao"));
@@ -28,6 +28,7 @@ export function AppRouter() {
             <Route path="/sobre" element={<SobreProjeto />} />
             <Route path="/para-profissionais" element={<ParaProfissionais />} />
             <Route path="/ldrt" element={<LDRT />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
       </Suspense>
