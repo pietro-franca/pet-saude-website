@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saúde do Trabalhador - LDRT</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    // Se for celular, redireciona magicamente para o PWA (App puro)
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.replace('./pwa/index.html');
+    }
+  </script>
+
+  <style>
+    :root {
+      --primary: #1A237E; /* Ajustado para bater com PWA */
+      --primary-hover: #283593;
+      --secondary: #006064; /* Ajustado para bater com PWA */
+      --secondary-hover: #00838F;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --radius-lg: 24px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #e0e7ff 0%, #cbd5e1 100%);
+      color: var(--text-main);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    /* App Container */
+    .app-container {
+      width: 95vw;
+      height: 90vh;
+      max-width: 1400px;
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    /* Header */
+    .header {
+      height: 72px;
+      background: rgba(255, 255, 255, 0.9);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      flex-shrink: 0;
+      gap: 16px;
+    }
+    .header-title {
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--primary), #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .header-subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+      margin-left: auto;
+      border-left: 2px solid var(--border);
+      padding-left: 16px;
+      min-width: 0;
+      flex-shrink: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .header-pet {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-left: 2px solid var(--border);
+      padding-left: 16px;
+    }
+    .header-pet img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+    }
+    .header-pet span {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Main Layout */
+    .main-body {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* Sidebar (Left Pane) */
+    .sidebar {
+      width: 380px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .search-section {
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-alt);
+    }
+
+    /* Modern Segmented Control for Toggles */
+    .toggle-group {
+      display: flex;
+      background: #e2e8f0;
+      padding: 4px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .toggle-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      transition: color 0.3s;
+    }
+    .toggle-btn.active.doenca { color: var(--primary); }
+    .toggle-btn.active.risco { color: var(--secondary); }
+    .toggle-slider {
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      width: calc(50% - 4px);
+      background: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+    .toggle-group.is-risco .toggle-slider {
+      transform: translateX(100%);
+    }
+
+    .search-box {
+      position: relative;
+    }
+    .search-box svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      width: 20px;
+      height: 20px;
+    }
+    .search-input {
+      width: 100%;
+      padding: 12px 12px 12px 40px;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s;
+      background: white;
+    }
+    .search-input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+    .cat-select {
+      width: 100%;
+      margin-top: 12px;
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--text-main);
+      font-weight: 500;
+      outline: none;
+      cursor: pointer;
+      background: white;
+      display: none;
+    }
+
+    /* List Area */
+    .list-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+    }
+    .list-item {
+      padding: 14px 16px;
+      margin-bottom: 6px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-main);
+      line-height: 1.4;
+      position: relative;
+      overflow: hidden;
+    }
+    .list-item:hover {
+      background: var(--surface-alt);
+      transform: translateY(-1px);
+    }
+    .list-item.active {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+      color: var(--primary);
+    }
+    .list-item.active.risco {
+      background: #ecfeff;
+      border-color: #a5f3fc;
+      color: var(--secondary);
+    }
+    .list-item.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--primary);
+      border-radius: 4px 0 0 4px;
+    }
+    .list-item.active.risco::before {
+      background: var(--secondary);
+    }
+    
+    .empty-state {
+      padding: 32px 16px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Detail Pane (Right Pane) */
+    .detail-pane {
+      flex: 1;
+      background: var(--bg);
+      position: relative;
+      overflow-y: auto;
+      padding: clamp(16px, 3vw, 40px);
+      min-width: 0;
+    }
+
+    .detail-breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      background: none;
+      border: none;
+      border-bottom: 1px solid transparent;
+      padding: 2px 0;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: border-color 0.2s, opacity 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .detail-breadcrumb:hover {
+      border-bottom-color: var(--primary);
+      opacity: 0.75;
+    }
+    .detail-breadcrumb svg { width: 14px; height: 14px; }
+    
+
+    .detail-content {
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeUp 0.4s ease-out forwards;
+    }
+    
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .detail-header-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .detail-type-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .detail-type-badge.doenca {
+      background: #e0e7ff;
+      color: var(--primary);
+    }
+    .detail-type-badge.risco {
+      background: #cffafe;
+      color: var(--secondary);
+    }
+
+    .btn-copy {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-copy:hover {
+      background: var(--surface-alt);
+      border-color: #cbd5e1;
+    }
+    .btn-copy:active { transform: scale(0.98); }
+
+    .detail-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.3;
+      margin-bottom: 24px;
+    }
+    .detail-expansion {
+      background: white;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--text-muted);
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      color: #334155;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .related-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
+      gap: 16px;
+    }
+
+    .related-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .related-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+    }
+    
+    .related-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .related-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .expand-btn {
+      background: var(--surface-alt);
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .expand-btn:hover {
+      background: #e2e8f0;
+      color: var(--text-main);
+    }
+    .expand-btn svg { width: 18px; height: 18px; transition: transform 0.3s; }
+    .expand-btn.open svg { transform: rotate(180deg); }
+
+    .nav-btn {
+      border: none;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: filter 0.2s, transform 0.15s;
+    }
+    .nav-btn:hover { filter: brightness(0.85); transform: scale(1.1); }
+    .nav-btn svg { width: 15px; height: 15px; }
+
+    .related-card-expansion {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.6;
+      text-align: justify;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .related-card-expansion.open {
+      display: block;
+    }
+
+    /* Welcome Panel */
+    .detail-empty {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 48px;
+      opacity: 1;
+      text-align: center;
+    }
+
+    .welcome-icons {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .welcome-icon-wrap {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+    }
+    .welcome-icon-wrap.w-primary { background: linear-gradient(135deg, #1A237E, #3949ab); }
+    .welcome-icon-wrap.w-secondary { background: linear-gradient(135deg, #006064, #00838f); }
+    .welcome-icon-wrap.w-pet { background: linear-gradient(135deg, #4a148c, #7b1fa2); }
+    .welcome-icon-wrap svg { width: 30px; height: 30px; color: white; }
+
+    .welcome-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .welcome-intro {
+      font-size: 15px;
+      color: #334155;
+      line-height: 1.7;
+      max-width: 580px;
+      margin-bottom: 32px;
+    }
+    .welcome-intro strong {
+      color: var(--primary);
+    }
+
+    .welcome-cards {
+      display: flex;
+      gap: 16px;
+      max-width: 680px;
+      width: 100%;
+      margin-bottom: 28px;
+    }
+    .welcome-card {
+      flex: 1;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: left;
+      box-shadow: var(--shadow-sm);
+    }
+    .welcome-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .welcome-card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .welcome-card-icon.nexo { background: #e0e7ff; }
+    .welcome-card-icon.nexo svg { color: var(--primary); }
+    .welcome-card-icon.notif { background: #ccfbf1; }
+    .welcome-card-icon.notif svg { color: var(--secondary); }
+    .welcome-card-icon svg { width: 20px; height: 20px; }
+    .welcome-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .welcome-card p {
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    .welcome-pet {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f5f3ff;
+      border: 1px solid #ddd6fe;
+      border-radius: 12px;
+      padding: 12px 18px;
+      max-width: 680px;
+      width: 100%;
+      margin-bottom: 24px;
+    }
+    .welcome-pet img { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
+    .welcome-pet span {
+      font-size: 13px;
+      color: #4c1d95;
+      line-height: 1.5;
+    }
+    .welcome-pet strong { color: #5b21b6; }
+
+    .welcome-cta {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .welcome-cta svg { width: 16px; height: 16px; }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1e293b;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+      box-shadow: var(--shadow-lg);
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="header">
+      <div class="header-title">LDRT</div>
+      <div class="header-subtitle">Lista de Doenças Relacionadas ao Trabalho</div>
+      <div class="header-pet">
+        <img src="./pwa/assets/logo.png" alt="PET Saúde Digital">
+        <span>PET-Saúde/I&amp;SD</span>
+      </div>
+    </header>
+
+    <main class="main-body">
+      
+      <!-- Sidebar / Pesquisa -->
+      <aside class="sidebar">
+        <div class="search-section">
+          
+          <div class="toggle-group" id="toggle-group">
+            <div class="toggle-slider"></div>
+            <button class="toggle-btn active doenca" id="btn-doenca">Doença</button>
+            <button class="toggle-btn risco" id="btn-risco">Fator de Risco</button>
+          </div>
+
+          <div class="search-box">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            <input type="text" class="search-input" id="search-input" placeholder="Buscar Doença ou CID...">
+          </div>
+          
+          <select id="category-select" class="cat-select">
+            <option value="Todos">Todas as Categorias de Risco</option>
+            <option value="FISICO">Físico</option>
+            <option value="QUIMICO">Químico</option>
+            <option value="BIOLOGICO">Biológico</option>
+            <option value="OUTRO">Outros</option>
+          </select>
+        </div>
+
+        <div class="list-area" id="list-area">
+          <!-- Items injected here by JS -->
+        </div>
+      </aside>
+
+      <!-- Painel de Detalhes -->
+      <section class="detail-pane" id="detail-pane">
+        <div class="detail-empty">
+
+          <!-- Ícones: trabalho, saúde, PET/educação -->
+          <div class="welcome-icons">
+            <div class="welcome-icon-wrap w-primary" title="Saúde do Trabalhador">
+              <!-- Ícone: maleta/trabalho -->
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
+                <line x1="12" y1="12" x2="12" y2="16" stroke-linecap="round"/>
+                <line x1="10" y1="14" x2="14" y2="14" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="welcome-icon-wrap w-secondary" title="Saúde">
+              <!-- Ícone: coração/saúde -->
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </div>
+            <div class="welcome-icon-wrap w-pet" title="PET-Saúde/I&SD">
+              <!-- Ícone: capelo/educação (PET) -->
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422A12.083 12.083 0 0121 21H3a12.083 12.083 0 012.84-10.422L12 14z"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Título e texto introdutório -->
+          <h2 class="welcome-title">O que é a LDRT?</h2>
+          <p class="welcome-intro">
+            A <strong>Lista de Doenças Relacionadas ao Trabalho</strong> é o instrumento oficial do SUS para reconhecer doenças causadas ou agravadas pelo trabalho. Estabelecida pela <strong>Portaria GM/MS nº 1.999/2023</strong>, ela reúne centenas de condições de saúde associadas a exposições ocupacionais — agentes físicos, químicos, biológicos e psicossociais.
+          </p>
+
+          <!-- Cards: Nexo Causal e Notificação -->
+          <div class="welcome-cards">
+            <div class="welcome-card">
+              <div class="welcome-card-header">
+                <div class="welcome-card-icon nexo">
+                  <!-- Ícone: link/nexo -->
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                  </svg>
+                </div>
+                <span class="welcome-card-title">Nexo Causal</span>
+              </div>
+              <p>Determinar se uma doença tem origem ou agravamento no trabalho é o passo fundamental para que o trabalhador acesse seus direitos. A LDRT orienta esse processo, apontando os fatores de risco ocupacionais associados a cada condição de saúde.</p>
+            </div>
+
+            <div class="welcome-card">
+              <div class="welcome-card-header">
+                <div class="welcome-card-icon notif">
+                  <!-- Ícone: prancheta/notificação -->
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                  </svg>
+                </div>
+                <span class="welcome-card-title">Notificação</span>
+              </div>
+              <p>Agravos relacionados ao trabalho são de notificação compulsória no SINAN. A LDRT auxilia na identificação dos casos que devem ser notificados e orienta o preenchimento correto das fichas de notificação.</p>
+            </div>
+          </div>
+
+          <!-- Crédito PET -->
+          <div class="welcome-pet">
+            <img src="./pwa/assets/logo.png" alt="PET Saúde Digital">
+            <span>Desenvolvido no <strong>PET-Saúde/I&amp;SD</strong> — Programa de Educação pelo Trabalho para a Saúde: Informação e Saúde Digital.</span>
+          </div>
+
+          <!-- CTA -->
+          <p class="welcome-cta">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            Use a busca ao lado para começar
+          </p>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="toast" id="toast">Copiado para a área de transferência!</div>
+
+  <!-- Importar dados do PWA -->
+  <script src="./pwa/js/data.js"></script>
+
+  <!-- Controladores da Interface Desktop -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const data = window.LDRT_DATA || [];
+      const expansions = window.EXPANSION_TEXTS || {};
+
+      let currentMode = 'Doença';
+      let currentQuery = '';
+      let currentCat = 'Todos';
+
+      const toggleGroup = document.getElementById('toggle-group');
+      const btnDoenca = document.getElementById('btn-doenca');
+      const btnRisco = document.getElementById('btn-risco');
+      const searchInput = document.getElementById('search-input');
+      const categorySelect = document.getElementById('category-select');
+      const listArea = document.getElementById('list-area');
+      const detailPane = document.getElementById('detail-pane');
+      const toast = document.getElementById('toast');
+
+      let currentActiveKey = null;
+
+      const welcomeHTML = detailPane.innerHTML;
+      window.renderWelcome = () => {
+        currentActiveKey = null;
+        document.querySelectorAll('.list-item').forEach(el => el.classList.remove('active'));
+        detailPane.innerHTML = welcomeHTML;
+        detailPane.scrollTop = 0;
+      };
+
+      // Utilities
+      const removeDiacritics = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const normalize = (text) => removeDiacritics(text.toLowerCase()).trim();
+
+      const showToast = () => {
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+      };
+
+      const copyToClipboard = (text) => {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(showToast);
+        } else {
+          const area = document.createElement('textarea');
+          area.value = text;
+          document.body.appendChild(area);
+          area.select();
+          document.execCommand('copy');
+          area.remove();
+          showToast();
+        }
+      };
+
+      // Toggles
+      btnDoenca.addEventListener('click', () => {
+        currentMode = 'Doença';
+        toggleGroup.classList.remove('is-risco');
+        btnDoenca.classList.add('active');
+        btnRisco.classList.remove('active');
+        categorySelect.style.display = 'none';
+        searchInput.placeholder = 'Buscar Doença ou CID...';
+        detailPane.innerHTML = `
+          <div class="detail-empty" style="opacity:0.6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:56px;height:56px;margin-bottom:14px;color:var(--text-muted)">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <p style="font-size:16px;font-weight:500;color:var(--text-muted)">Selecione uma doença na lista para consultar</p>
+          </div>`;
+        updateList();
+      });
+
+      btnRisco.addEventListener('click', () => {
+        currentMode = 'Fator de Risco';
+        toggleGroup.classList.add('is-risco');
+        btnRisco.classList.add('active');
+        btnDoenca.classList.remove('active');
+        categorySelect.style.display = 'block';
+        searchInput.placeholder = 'Buscar Agente ou Fator...';
+        detailPane.innerHTML = `
+          <div class="detail-empty" style="opacity:0.6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:56px;height:56px;margin-bottom:14px;color:var(--text-muted)">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <p style="font-size:16px;font-weight:500;color:var(--text-muted)">Selecione um fator de risco para consultar</p>
+          </div>`;
+        updateList();
+      });
+
+      searchInput.addEventListener('input', (e) => {
+        currentQuery = e.target.value;
+        updateList();
+      });
+
+      categorySelect.addEventListener('change', (e) => {
+        currentCat = e.target.value;
+        updateList();
+      });
+
+      window.navigateToRelated = (relEncoded, targetMode) => {
+        const rel = decodeURIComponent(relEncoded);
+        currentMode = targetMode;
+
+        const isDisease = targetMode === 'Doença';
+        toggleGroup.classList.toggle('is-risco', !isDisease);
+        btnDoenca.classList.toggle('active', isDisease);
+        btnRisco.classList.toggle('active', !isDisease);
+        categorySelect.style.display = isDisease ? 'none' : 'block';
+        searchInput.placeholder = isDisease ? 'Buscar Doença ou CID...' : 'Buscar Agente ou Fator...';
+
+        let foundItem;
+        if (!isDisease) {
+          foundItem = data.find(d => normalize(d.fator_de_risco.trim()) === normalize(rel));
+        } else {
+          const namePart = rel.split(' - ')[0].trim();
+          foundItem = data.find(d => normalize(d.nome_condicao.trim()) === normalize(namePart));
+        }
+
+        if (foundItem) {
+          const key = isDisease
+            ? `${foundItem.nome_condicao.trim()} - ${foundItem.cid_com_ponto.trim()}`
+            : foundItem.fator_de_risco.trim();
+          updateList();
+          renderDetail(foundItem, key);
+        }
+      };
+
+      window.copyAllContent = (btnAttr) => {
+        try {
+            const rawData = JSON.parse(decodeURIComponent(btnAttr));
+            const header = rawData.header;
+            const title = rawData.title;
+            const hasExpan = expansions[title] ? true : false;
+            let text = `${header}:\n\n`;
+            if (hasExpan) {
+                text = `${header}\n${expansions[title]}\n\n`;
+            }
+            rawData.related.forEach(item => {
+                text += `- ${item}\n`;
+                if(expansions[item]) {
+                    text += `  ${expansions[item]}\n`;
+                }
+            });
+            copyToClipboard(text);
+        } catch (err){
+            console.error(err);
+        }
+      };
+
+
+      const renderDetail = (item, key) => {
+        currentActiveKey = key;
+        document.querySelectorAll('.list-item').forEach(el => el.classList.remove('active'));
+        const activeEl = document.querySelector(`[data-key="${key}"]`);
+        if (activeEl) activeEl.classList.add('active', currentMode === 'Doença' ? 'doenca' : 'risco');
+
+        const isDisease = currentMode === 'Doença';
+        const activeColor = isDisease ? '#1A237E' : '#006064';
+        const titleText = isDisease ? item.nome_condicao.trim() : item.fator_de_risco.trim();
+        const headerText = isDisease ? `${titleText} - ${item.cid_com_ponto.trim()}` : titleText;
+
+        // Determine related items
+        const relatedSet = new Set();
+        data.forEach(d => {
+          if (isDisease && normalize(d.nome_condicao) === normalize(item.nome_condicao)) {
+            relatedSet.add(d.fator_de_risco.trim());
+          } else if (!isDisease && normalize(d.fator_de_risco) === normalize(item.fator_de_risco)) {
+            relatedSet.add(`${d.nome_condicao.trim()} - ${d.cid_com_ponto.trim()}`);
+          }
+        });
+        const relatedArr = Array.from(relatedSet);
+        
+        const copyPayload = encodeURIComponent(JSON.stringify({ header: headerText, title: titleText, related: relatedArr }));
+
+        let html = `
+          <div class="detail-content">
+            <button class="detail-breadcrumb" onclick="renderWelcome()">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+              LDRT
+            </button>
+            <div class="detail-header-actions">
+              <div class="detail-type-badge ${isDisease ? 'doenca' : 'risco'}">
+                ${isDisease ? 'Doença / CID' : 'Agente de Risco'}
+              </div>
+              <button class="btn-copy" onclick="copyAllContent('${copyPayload}')">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                Copiar Tudo
+              </button>
+            </div>
+            
+            <h2 class="detail-title">${headerText}</h2>
+        `;
+
+        if (expansions[titleText]) {
+          html += `<div class="detail-expansion">${expansions[titleText]}</div>`;
+        }
+
+        html += `
+            <div class="related-title">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:20px;height:20px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+              ${isDisease ? 'Agentes e/ou Fatores Relacionados' : 'Doenças Relacionadas'}
+            </div>
+            <div class="related-grid">
+        `;
+
+        relatedArr.forEach(rel => {
+          const canExpand = isDisease && !!expansions[rel];
+          const navTarget = isDisease ? 'Fator de Risco' : 'Doença';
+          html += `
+            <div class="related-card">
+              <div class="related-card-header">
+                <div class="related-card-title">${rel}</div>
+                <div style="display:flex;align-items:center;gap:4px;flex-shrink:0">
+                  ${canExpand ? `
+                  <button class="expand-btn" onclick="const p=this.parentElement.parentElement.nextElementSibling; const t=p.classList.toggle('open'); this.classList.toggle('open');">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                  </button>
+                  ` : ''}
+                  <button class="nav-btn" style="background:${activeColor}" title="Ver relacionados" onclick="navigateToRelated('${encodeURIComponent(rel)}', '${navTarget}')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                  </button>
+                </div>
+              </div>
+              ${canExpand ? `<div class="related-card-expansion">${expansions[rel]}</div>` : ''}
+            </div>
+          `;
+        });
+
+        html += `
+            </div>
+          </div>
+        `;
+
+        detailPane.innerHTML = html;
+        detailPane.scrollTop = 0;
+      };
+
+      const updateList = () => {
+        const query = normalize(currentQuery);
+        
+        let filtered = data.filter(d => {
+          const nm = normalize(d.nome_condicao);
+          const cc = normalize(d.cid_com_ponto);
+          const cs = normalize(d.cid_sem_ponto);
+          const rs = normalize(d.fator_de_risco);
+          const ct = normalize(d.categoria);
+          
+          if (currentMode === 'Doença') {
+            return nm.includes(query) || cc.includes(query) || cs.includes(query);
+          } else {
+            return (currentCat === 'Todos' || ct === normalize(currentCat)) && rs.includes(query);
+          }
+        });
+
+        const unique = new Set();
+        listArea.innerHTML = '';
+        const frag = document.createDocumentFragment();
+
+        filtered.forEach(d => {
+          const key = currentMode === 'Doença' 
+            ? `${d.nome_condicao.trim()} - ${d.cid_com_ponto.trim()}`
+            : d.fator_de_risco.trim();
+
+          if (!unique.has(key)) {
+            unique.add(key);
+            const el = document.createElement('div');
+            el.className = `list-item ${currentActiveKey === key ? 'active ' + (currentMode==='Doença'?'doenca':'risco') : ''}`;
+            el.dataset.key = key;
+            el.textContent = key;
+            el.onclick = () => renderDetail(d, key);
+            frag.appendChild(el);
+          }
+        });
+
+        if (unique.size === 0) {
+          listArea.innerHTML = '<div class="empty-state">Nenhum resultado encontrado.</div>';
+        } else {
+          listArea.appendChild(frag);
+        }
+      };
+
+      // INIT
+      updateList();
+    });
+  </script>
+</body>
+</html>

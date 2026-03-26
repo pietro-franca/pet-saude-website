@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#1A237E" id="theme-color-meta">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>LDRT - Saúde do Trabalhador</title>
+  
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Material Icons from Google Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- iOS Install Banner -->
+  <div id="ios-install-banner" class="hidden">
+    <div class="banner-content">
+      <div class="banner-text">
+        <strong>Para instalar este app no iPhone:</strong><br>
+        1. Toque no botão de compartilhar <i class="material-icons ios-icon" style="font-size:16px;">ios_share</i><br>
+        2. Role para baixo<br>
+        3. Toque em 'Adicionar à Tela de Início'
+      </div>
+      <button id="close-ios-banner" class="icon-btn"><i class="material-icons">close</i></button>
+    </div>
+  </div>
+
+  <!-- Android Install Banner -->
+  <div id="install-banner" class="install-banner">
+    <img src="assets/logo.png" alt="Logo LDRT" class="banner-logo">
+    <div class="banner-text">
+      <strong>LDRT Offline</strong>
+      <span>Instale o aplicativo e acesse sem internet!</span>
+    </div>
+    <button id="btn-install" class="btn-install">Instalar App</button>
+    <button id="btn-close-install" class="btn-close">
+      <i class="material-icons" style="font-size: 20px;">close</i>
+    </button>
+  </div>
+
+  <!-- App Container -->
+  <div id="app" class="app-container">
+    
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="screen active">
+      <div class="splash-content">
+        <h1 class="splash-title">Lista de Doenças Relacionadas ao Trabalho</h1>
+        <img src="assets/logo2.png" alt="Logo CEREST" class="splash-logo">
+        <h2 class="splash-subtitle">PET Saúde Digital</h2>
+      </div>
+    </div>
+
+    <!-- Search Screen -->
+    <div id="search-screen" class="screen">
+      <!-- Header -->
+      <header class="app-header disease-mode" id="main-header">
+        <div class="header-content">
+          <div class="header-left"></div>
+          <h1 class="header-title">Buscar - LDRT</h1>
+          <div class="header-right">
+            <button class="icon-btn" id="btn-info" title="Informações">
+              <i class="material-icons">help_outline</i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Search Area -->
+      <div class="search-area disease-mode-bg" id="search-area-bg">
+        <div class="search-input-wrapper">
+          <i class="material-icons search-icon" id="search-icon">search</i>
+          <input type="text" id="search-input" placeholder="Digite o nome da doença ou CID" autocomplete="off">
+        </div>
+        
+        <div class="mode-toggle-wrapper">
+          <span class="mode-label">Modo de busca:</span>
+          <button id="btn-toggle-mode" class="mode-toggle-btn disease-mode-border">
+            <i class="material-icons mode-icon" id="mode-icon">medical_services</i>
+            <span id="mode-text" class="disease-mode-text">Doença</span>
+            <i class="material-icons mode-swap" id="mode-swap">swap_horiz</i>
+          </button>
+        </div>
+
+        <div class="category-filter-wrapper hidden" id="category-filter-wrapper">
+          <span class="mode-label">Categoria:</span>
+          <div class="select-wrapper risk-mode-border">
+            <select id="category-select" class="risk-mode-text">
+              <option value="Todos">Todos</option>
+              <option value="Físico">Físico</option>
+              <option value="Químico">Químico</option>
+              <option value="Biológico">Biológico</option>
+              <option value="Outro">Outro</option>
+            </select>
+            <i class="material-icons select-icon risk-mode-text">arrow_drop_down</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- List Area -->
+      <div class="list-area" id="search-list-area">
+        <!-- Hint Item -->
+        <div class="list-hint">
+          <i class="material-icons">info_outline</i>
+          <span id="search-hint-text">Toque em uma doença para listar os agentes e/ou fatores de risco relacionados.</span>
+        </div>
+        <!-- Results Container -->
+        <div id="search-results"></div>
+        <div id="no-results" class="hidden">
+          <p>Nenhum resultado encontrado</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail Screen -->
+    <div id="detail-screen" class="screen">
+      <header class="app-header" id="detail-header">
+        <div class="header-content">
+          <div class="header-left">
+            <button class="icon-btn" id="btn-back">
+              <i class="material-icons">arrow_back</i>
+            </button>
+          </div>
+          <h1 class="header-title"></h1>
+          <div class="header-right">
+            <button class="icon-btn" id="btn-copy-all" title="Copiar tudo">
+              <i class="material-icons">content_copy</i>
+            </button>
+            <button class="icon-btn" id="btn-home" title="Página Inicial">
+              <i class="material-icons">home</i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="list-area" id="detail-list-area">
+        <!-- Viewing Banner -->
+        <div class="viewing-banner" id="viewing-banner">
+          <i class="material-icons" id="viewing-icon"></i>
+          <span id="viewing-text"></span>
+        </div>
+
+        <!-- Main Title Card -->
+        <div class="main-title-card" id="main-title-card">
+          <div class="main-title-header shadow-inset">
+            <h2 id="detail-main-title"></h2>
+            <button class="icon-btn expand-btn hidden" id="title-expand-btn">
+              <i class="material-icons">expand_more</i>
+            </button>
+          </div>
+          <div class="expansion-text hidden" id="title-expansion-text"></div>
+        </div>
+
+        <!-- Detail Hint -->
+        <div class="list-hint">
+          <i class="material-icons">info_outline</i>
+          <span id="detail-hint-text"></span>
+        </div>
+
+        <h3 id="related-items-title" class="section-title"></h3>
+
+        <!-- Related Items List -->
+        <div id="related-items-list"></div>
+      </div>
+    </div>
+
+  </div> <!-- End App Container -->
+
+  <!-- Info Dialog Overlay -->
+  <div id="info-dialog" class="dialog-overlay hidden">
+    <div class="dialog">
+      <div class="dialog-header">
+        <div class="dialog-header-icon">
+          <img src="assets/logo2.png" alt="PET Saúde Digital">
+        </div>
+        <div>
+          <div class="dialog-title">LDRT</div>
+          <div class="dialog-subtitle">Lista de Doenças Relacionadas ao Trabalho</div>
+        </div>
+      </div>
+
+      <div class="dialog-content">
+
+        <p class="dialog-description">Ferramenta de consulta à <strong>Portaria GM/MS nº 1.999/2023</strong>, que estabelece a Lista de Doenças Relacionadas ao Trabalho — referência do SUS para identificar condições de saúde causadas ou agravadas pelo trabalho, associadas a exposições físicas, químicas, biológicas e psicossociais.</p>
+
+        <div class="dialog-divider"></div>
+
+        <div class="resource-list">
+          <div class="resource-item">
+            <i class="material-icons resource-icon">link</i>
+            <div>
+              <strong>Nexo Causal</strong>
+              <span class="resource-desc">Determinar se uma doença tem origem ou agravamento no trabalho é o passo essencial para que o trabalhador acesse seus direitos. A LDRT orienta esse processo, indicando os fatores de risco associados a cada condição de saúde.</span>
+            </div>
+          </div>
+          <div class="resource-item">
+            <i class="material-icons resource-icon">assignment_turned_in</i>
+            <div>
+              <strong>Notificação</strong>
+              <span class="resource-desc">Agravos relacionados ao trabalho são de notificação compulsória no SINAN. A LDRT auxilia na identificação dos casos a notificar e orienta o preenchimento correto das fichas.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dialog-divider"></div>
+
+        <div class="dialog-pet">
+          <img src="assets/logo.png" alt="PET Saúde Digital">
+          <span>Desenvolvido no contexto do <strong>PET-Saúde/I&SD</strong> — Programa de Educação pelo Trabalho para a Saúde: Informação e Saúde Digital.</span>
+        </div>
+
+        <p class="dialog-compat">Compatível com Windows, Linux, macOS, Android, iOS e air fryer. </p>
+      </div>
+
+      <div class="dialog-actions">
+        <button id="btn-close-info" class="text-btn">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Snackbar -->
+  <div id="snackbar" class="snackbar hidden">Texto copiado para a área de transferência</div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/installPrompt.js"></script>
+  <script src="js/app.js"></script>
+  
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(registration => console.log('SW registered'))
+          .catch(err => console.log('SW setup failed', err));
+      });
+    }
+  </script>
+</body>
+</html>
