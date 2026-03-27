@@ -516,10 +516,33 @@ function LDRTApp() {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
+function MobileFallback() {
+  return (
+    <main className="flex flex-col items-center justify-center min-h-[60vh] px-6 py-28 text-center gap-6 bg-sky-700">
+      <div className="w-16 h-16 rounded-2xl bg-orange-400 flex items-center justify-center shadow-md mb-2">
+        <Briefcase className="w-8 h-8 text-white" strokeWidth={1.7} />
+      </div>
+      <h2 className="text-2xl font-bold text-gray-200">LDRT</h2>
+      <p className="text-base text-gray-100 leading-relaxed max-w-sm">
+        A versão mobile da LDRT está disponível como aplicativo. Instale-o para
+        acessar offline ou abra diretamente no navegador.
+      </p>
+      <a
+        href="/ldrt/pwa/index.html"
+        className="inline-flex items-center gap-2 bg-sky-400 hover:bg-sky-800 text-white font-semibold px-6 py-3 rounded-xl shadow transition"
+      >
+        Abrir LDRT
+      </a>
+      <a href="/" className="text-sm text-gray-300 hover:text-sky-700 transition">
+        ← Voltar à tela inicial
+      </a>
+    </main>
+  );
+}
+
 export default function LDRT() {
   if (isMobileDevice()) {
-    window.location.replace("/ldrt/pwa/index.html");
-    return null;
+    return <MobileFallback />;
   }
 
   return (

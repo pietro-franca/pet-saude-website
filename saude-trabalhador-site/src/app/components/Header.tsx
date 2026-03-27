@@ -3,10 +3,12 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
 const navLinks = [
   { to: "/sobre", label: "Sobre o Projeto" },
   { to: "/para-profissionais", label: "Para Profissionais" },
-  { to: "/ldrt", label: "LDRT" },
+  { to: isMobile ? "/ldrt/pwa/index.html" : "/ldrt", label: "LDRT", external: isMobile },
 ];
 
 export function Header() {
@@ -50,15 +52,12 @@ export function Header() {
           </Link>
 
           <nav className="hidden md:flex font-semibold text-lg items-center gap-8">
-            {navLinks.map(({ to, label }) => (
-              <NavLink
-                key={label}
-                to={to}
-                className={`transition-colors duration-300 ${scrolled ? `${label === "LDRT" ? " font-bold text-orange-600 " : " text-sky-800 "} hover:text-sky-500` : `${label === "LDRT" ? " font-bold text-sky-400 hover:text-orange-500 " : " text-white/90 hover:text-sky-300 "} transition`}`}
-              >
-                {label}
-              </NavLink>
-            ))}
+            {navLinks.map(({ to, label, external }) => {
+              const cls = `transition-colors duration-300 ${scrolled ? `${label === "LDRT" ? " font-bold text-orange-600 " : " text-sky-800 "} hover:text-sky-500` : `${label === "LDRT" ? " font-bold text-sky-400 hover:text-orange-500 " : " text-white/90 hover:text-sky-300 "} transition`}`;
+              return external
+                ? <a key={label} href={to} className={cls}>{label}</a>
+                : <NavLink key={label} to={to} className={cls}>{label}</NavLink>;
+            })}
           </nav>
 
           <button
@@ -77,16 +76,12 @@ export function Header() {
           className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}
         >
           <nav className="flex flex-col gap-4 pt-4 pb-2">
-            {navLinks.map(({ to, label }) => (
-              <NavLink
-                key={label}
-                to={to}
-                onClick={() => setMenuOpen(false)}
-                className={`font-semibold text-lg ${label === "LDRT" ? "text-orange-600" : "text-sky-800"} hover:text-sky-500 transition-colors`}
-              >
-                {label}
-              </NavLink>
-            ))}
+            {navLinks.map(({ to, label, external }) => {
+              const cls = `font-semibold text-lg ${label === "LDRT" ? "text-orange-600" : "text-sky-800"} hover:text-sky-500 transition-colors`;
+              return external
+                ? <a key={label} href={to} className={cls}>{label}</a>
+                : <NavLink key={label} to={to} onClick={() => setMenuOpen(false)} className={cls}>{label}</NavLink>;
+            })}
           </nav>
         </div>
       </div>
