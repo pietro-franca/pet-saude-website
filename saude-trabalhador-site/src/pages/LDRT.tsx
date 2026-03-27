@@ -1,5 +1,4 @@
 import { useState, useMemo, useRef, useEffect } from "react";
-import { Navigate } from "react-router-dom";
 import {
   Search, Copy, Check, ChevronDown, ChevronRight,
   Briefcase, Heart, GraduationCap, Link2, ClipboardList,
@@ -519,8 +518,8 @@ function LDRTApp() {
 
 export default function LDRT() {
   if (isMobileDevice()) {
-    window.open("/ldrt/pwa/index.html", "_blank", "noopener");
-    return <Navigate to="/" replace />;
+    window.location.replace("/ldrt/pwa/index.html");
+    return null;
   }
 
   return (
