@@ -50,17 +50,17 @@ export function NotificationGuide() {
                 key={index}
                 className={`relative pt-4 flex ${isLeft ? "justify-start" : "justify-end"}`}
               >
-                <Card className={`w-full lg:w-[70%] p-6 relative border-2 border-gray-200 hover:border-orange-500 transition-all shadow-lg ${isLeft ? "bg-white" : "bg-gray-50"}`}>
-                  <div className="absolute -top-4 right-6 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                <Card className={`w-full rounded-3xl lg:w-[70%] p-6 relative border-2 border-gray-200 hover:border-orange-500 transition-all shadow-lg ${isLeft ? "bg-white" : "bg-gray-50"}`}>
+                  <div className="absolute -top-4 right-10 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
                     {step.number}
                   </div>
 
-                  <div className="w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center mb-4 mt-2">
+                  <div className="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center mb-4 mt-2">
                     <step.icon className="w-6 h-6 text-sky-600" />
                   </div>
 
                   <h3 className="text-lg mb-3 text-gray-900">{step.title}</h3>
-                  <p className="text-gray-600 text-sm">{step.description}</p>
+                  <p className="text-gray-600">{step.description}</p>
                 </Card>
 
                 {/* Conector em L — visível apenas em telas grandes */}
@@ -68,8 +68,8 @@ export function NotificationGuide() {
                   <div
                     className={`hidden lg:block absolute border-sky-400 ${
                       isLeft
-                        ? "left-[70%] right-[85px] border-t-[3px] border-r-[3px] rounded-tr-[36px]"
-                        : "right-[70%] left-[85px] border-t-[3px] border-l-[3px] rounded-tl-[36px]"
+                        ? "left-[70%] right-[120px] border-t-[3px] border-r-[3px] rounded-tr-[36px]"
+                        : "right-[70%] left-[120px] border-t-[3px] border-l-[3px] rounded-tl-[36px]"
                     }`}
                     style={{
                       // centro visual do card (compensa pt-4 = 1rem)

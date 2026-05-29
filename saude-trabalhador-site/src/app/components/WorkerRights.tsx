@@ -53,12 +53,12 @@ export function WorkerRights() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-18">
           {rights.map((right, index) => (
-            <Card key={index} className="p-6 border-2 border-gray-200 hover:border-sky-500 shadow-lg transition-all">
-              <div className={`w-12 h-12 ${right.id < 4 ? "bg-sky-100" : "bg-orange-100"} rounded-lg flex items-center justify-center mb-4`}>
+            <Card key={index} className={`p-6 border-2 border-gray-200 ${right.id < 4 ? "hover:border-sky-500" : "hover:border-orange-500"} shadow-lg transition-all`}>
+              <div className={`w-12 h-12 ${right.id < 4 ? "bg-sky-100" : "bg-orange-100"} rounded-2xl flex items-center justify-center mb-4`}>
                 <right.icon className={`w-6 h-6 ${right.id < 4 ? "text-sky-700" : "text-orange-600"}`} />
               </div>
               <h3 className="text-lg mb-3 text-gray-900">{right.title}</h3>
-              <p className="text-gray-600 text-sm">{right.description}</p>
+              <p className="text-gray-600">{right.description}</p>
             </Card>
           ))}
         </div>
@@ -69,7 +69,7 @@ export function WorkerRights() {
             <p className="text-gray-700 mb-4">
               Se você teve seus direitos violados, procure ajuda:
             </p>
-            <ul className="space-y-2 text-gray-700 text-sm">
+            <ul className="space-y-2 text-gray-700">
               <li>• <strong>Disque 158:</strong> Denúncias ao Ministério do Trabalho</li>
               <li>• <strong>CEREST:</strong> Centro de Referência em Saúde do Trabalhador</li>
               <li>• <strong>Sindicato da Categoria:</strong> Orientação e apoio jurídico</li>
@@ -82,7 +82,7 @@ export function WorkerRights() {
             <p className="text-gray-700 mb-4">
               Você não está sozinho. Há uma rede de apoio disponível:
             </p>
-            <ul className="space-y-2 text-gray-700 text-sm">
+            <ul className="space-y-2 text-gray-700">
               <li>• <strong>CEREST Regional:</strong> Atendimento e vigilância em saúde</li>
               <li>• <strong>CAPs (Caixa de Aposentadorias):</strong> Benefícios previdenciários</li>
               <li>• <strong>Defensoria Pública:</strong> Assistência jurídica gratuita</li>

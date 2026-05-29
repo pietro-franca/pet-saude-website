@@ -24,6 +24,7 @@ import {
   Mail,
   Phone,
   XCircle,
+  Form,
 } from "lucide-react";
 import { Card } from "../app/components/ui/card";
 
@@ -258,7 +259,7 @@ function ExpandCard({
   const textColor = titleClass ?? colorClass.replace("border-", "text-");
 
   return (
-    <div className={`rounded-2xl border-2 ${colorClass} overflow-hidden shadow-md transition-shadow hover:shadow-lg`}>
+    <div className={`rounded-3xl border-2 ${colorClass} overflow-hidden shadow-md transition-shadow hover:shadow-lg`}>
       <button
         type="button"
         onClick={() => setOpen((p) => !p)}
@@ -270,7 +271,7 @@ function ExpandCard({
           </div>
           <div>
             <h3 className={`text-lg font-bold ${textColor}`}>{title}</h3>
-            <p className="text-sm text-gray-600">{subtitle}</p>
+            <p className="text-gray-600">{subtitle}</p>
           </div>
         </div>
         <ChevronDown
@@ -339,7 +340,7 @@ export default function ParaProfissionais() {
           className="absolute inset-0 opacity-10 pointer-events-none select-none"
           style={{ backgroundImage: "radial-gradient(circle at 70% 40%, #fb923c 0%, transparent 60%)" }}
         />
-        <div className="max-w-7xl mx-auto relative">
+        <div className="max-w-4xl mx-auto relative">
           <div className="inline-flex items-center gap-2 bg-white/10 text-sky-100 text-sm font-medium px-4 py-1.5 rounded-full mb-6 hover:-translate-y-1 transition cursor-default">
             <ShieldCheck className="w-4 h-4" />
             Área do Profissional de Saúde
@@ -359,13 +360,12 @@ export default function ParaProfissionais() {
 
       {/* ── CONSCIENTIZAÇÃO ── */}
       <section className="py-20 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <span className="text-orange-500 font-semibold uppercase tracking-widest">Conscientização</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-5 mb-7">
-            Por que a Vigilância em Saúde do Trabalhador importa?
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-orange-500 mt-5 mb-10 text-center">
+            Por que é importante?
           </h2>
           <div className="flex flex-col-reverse min-[1080px]:block">
-            <div className="overflow-hidden rounded-2xl drop-shadow-[0_4px_8px_rgba(0,0,0,0.2)] min-[1080px]:float-right min-[1080px]:w-[45%] min-[1080px]:ml-10 max-[1080px]:mt-12 mb-6">
+            <div className="overflow-hidden rounded-3xl drop-shadow-[0_4px_8px_rgba(0,0,0,0.2)] min-[1080px]:float-right min-[1080px]:w-[45%] min-[1080px]:ml-10 max-[1080px]:mt-12 mb-6">
               <img src="/pet-consulta-medica.png" alt="" className="w-full h-auto hover:scale-105 transition duration-300" />
             </div>
             <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
@@ -373,17 +373,17 @@ export default function ParaProfissionais() {
                 A saúde do trabalhador é uma área da Saúde Pública que procura entender como o trabalho influencia
                 a saúde das pessoas e, a partir disso, agir para melhorar essa relação. Nesse contexto, doenças e
                 acidentes no ambiente de trabalho não acontecem por acaso, eles costumam revelar problemas
-                estruturais que poderiam ser evitados com <span className="text-sky-600">medidas adequadas de prevenção</span>.
+                estruturais que poderiam ser evitados com <span className="text-sky-600 font-semibold">medidas adequadas de prevenção</span>.
               </p>
               <p>
                 Para que esses problemas sejam identificados e enfrentados de forma eficaz, é necessário que
-                existam dados confiáveis sobre sua ocorrência. É justamente nesse ponto que a <span className="text-sky-600">notificação</span>{' '}
+                existam dados confiáveis sobre sua ocorrência. É justamente nesse ponto que a <span className="text-sky-600 font-semibold">notificação</span>{' '}
                 dos agravos relacionados ao trabalho se torna fundamental.
               </p>
               <p>
                 No entanto, a subnotificação ainda é um dos grandes desafios da saúde pública. Quando um problema
                 de saúde não é registrado, ele deixa de existir para o sistema, o que dificulta a criação de políticas,
-                a fiscalização e a prevenção. Assim, o profissional de saúde assume um <span className="text-sky-600">papel essencial</span> nesse processo,
+                a fiscalização e a prevenção. Assim, o profissional de saúde assume um <span className="text-sky-600 font-semibold">papel essencial</span> nesse processo,
                 pois é quem garante que essas informações sejam corretamente notificadas.
               </p>
             </div>
@@ -391,14 +391,14 @@ export default function ParaProfissionais() {
           </div>
           
 
-          <div className="mt-8 p-6 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl">
+          <div className="mt-8 p-6 bg-orange-50 border-l-4 border-orange-500 rounded-r-xl">
             <div className="flex gap-3 items-start">
-              <Info className="w-5 h-5 text-sky-600 mt-0.5 shrink-0" />
-              <p className="text-gray-700 text-sm leading-relaxed">
-                <strong>Impacto social e econômico:</strong> Acidentes e doenças relacionadas ao trabalho geram
-                afastamentos, perda de produtividade, sofrimento familiar e custos bilionários ao sistema
-                previdenciário e de saúde. A cada notificação realizada corretamente, amplia-se a base de dados que
-                orienta políticas de prevenção, fiscalização e promoção da saúde — salvando vidas.
+              <Info className="w-5 h-5 text-orange-600 mt-0.5 shrink-0" />
+              <p className="text-gray-700 leading-relaxed">
+                <strong>Impacto social e econômico:</strong> Acidentes e doenças relacionadas ao trabalho geram afastamentos, 
+                perda de produtividade, sofrimento familiar e custos milionários ao sistema previdenciário e de saúde. Para 
+                combater esse cenário, é fundamental que cada notificação seja feita corretamente: assim, melhoramos os dados 
+                que orientam as políticas de prevenção, fiscalização e promoção da saúde, ajudando a salvar vidas.
               </p>
             </div>
           </div>
@@ -407,10 +407,9 @@ export default function ParaProfissionais() {
 
       {/* ── QUANDO NOTIFICAR ── */}
       <section className="py-20 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <span className="text-sky-700 font-semibold uppercase tracking-widest">Obrigatoriedade</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-5 mb-7">Quando devo notificar?</h2>
-          <p className="text-gray-700 mb-10 text-lg">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-sky-700 text-center mt-5 mb-7">Quando devo notificar?</h2>
+          <p className="text-gray-700 mb-10 text-center text-lg">
             Conforme a <strong>Portaria de Consolidação nº 4/2017</strong>, os seguintes eventos são de{" "}
             <strong className="text-orange-600">notificação compulsória imediata</strong>, independentemente de
             confirmação diagnóstica:
@@ -420,21 +419,21 @@ export default function ParaProfissionais() {
             {casosObrigatorios.map((caso, i) => (
               <div
                 key={i}
-                className={`rounded-2xl border ${caso.border} ${caso.bg} p-5 flex gap-7 hover:scale-103 transition duration-300`}
+                className={`rounded-3xl border ${caso.border} ${caso.bg} p-6 flex gap-7 hover:scale-103 transition duration-300`}
               >
-                <div className={`w-10 h-10 rounded-xl bg-white border ${caso.border} flex items-center justify-center shrink-0`}>
+                <div className={`w-10 h-10 rounded-2xl bg-white border ${caso.border} flex items-center justify-center shrink-0`}>
                   <caso.icon className={`w-5 h-5 ${caso.color}`} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-900 mb-1">{caso.titulo}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{caso.detalhe}</p>
+                  <h3 className="font-semibold text-lg text-gray-900 mb-2">{caso.titulo}</h3>
+                  <p className="text-gray-600 leading-relaxed">{caso.detalhe}</p>
                 </div>
               </div>
             ))}
           </div>
 
           <p className="mt-11 text-gray-700 text-lg">
-            Na dúvida, <strong>notifique</strong>. A lei não exige confirmação diagnóstica para a notificação,
+            Na dúvida, <strong>notifique</strong>! A lei não exige confirmação diagnóstica para a notificação, logo,
             a <strong className="text-sky-600">suspeita fundamentada</strong> já é suficiente e obriga o profissional a agir.
             A omissão pode configurar <strong>infração sanitária</strong>.
           </p>
@@ -455,14 +454,14 @@ export default function ParaProfissionais() {
                     </h3>
                   </div>
                 </div>
-                <p className="text-blue-100 text-sm leading-relaxed">
+                <p className="text-blue-100 leading-relaxed">
                   A LDRT é uma ferramenta de consulta que relaciona doenças e agravos à exposição a agentes presentes
                   nos ambientes de trabalho. É fundamental para o profissional de saúde estabelecer o nexo causal e
                   identificar quais condições devem ser notificadas.
                 </p>
                 <Link
                   to="/ldrt"
-                  className="self-start inline-flex items-center gap-2 bg-white text-[#0d1b6e] font-bold px-5 py-3 rounded-xl hover:bg-blue-50 active:bg-blue-100 active:duration-0 transition text-sm"
+                  className="self-start inline-flex items-center gap-2 bg-white text-[#0d1b6e] font-bold px-5 py-3 rounded-xl hover:bg-blue-50 active:bg-blue-100 active:duration-0 transition"
                 >
                   <ExternalLink className="w-4 h-4" />
                   Consultar a LDRT
@@ -470,7 +469,7 @@ export default function ParaProfissionais() {
               </div>
 
               {/* Direita: aplicativo */}
-              <div className="bg-blue-50 p-8 flex gap-5 lg:w-80">
+              <div className="bg-blue-50 p-8 flex gap-5 lg:w-90">
                 <button
                   type="button"
                   onClick={() => setAppModalOpen(true)}
@@ -486,7 +485,7 @@ export default function ParaProfissionais() {
                   <div>
                     <span className="text-[#0d1b6e] text-xs font-semibold uppercase tracking-widest">Aplicativo</span>
                     <h4 className="text-gray-900 font-bold text-base mt-0.5">LDRT App</h4>
-                    <p className="text-gray-600 text-sm mt-2 leading-relaxed">
+                    <p className="text-gray-600 mt-2 leading-relaxed">
                       Consulte a lista de doenças ocupacionais pelo celular, de qualquer lugar.
                     </p>
                   </div>
@@ -494,7 +493,7 @@ export default function ParaProfissionais() {
                     href="https://play.google.com/store/apps/details?id=com.ldrtcrst.app&hl=pt"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="self-start inline-flex items-center gap-2 bg-[#0d1b6e] text-white font-semibold px-4 py-2.5 rounded-xl hover:bg-[#1a2a8a] active:bg-[#0a1250] active:duration-0 transition text-sm"
+                    className="self-start inline-flex items-center gap-2 bg-[#0d1b6e] text-white font-semibold px-4 py-2.5 rounded-xl hover:bg-[#1a2a8a] active:bg-[#0a1250] active:duration-0 transition"
                   >
                     <ExternalLink className="w-4 h-4" />
                     Google Play
@@ -541,12 +540,11 @@ export default function ParaProfissionais() {
 
       {/* ── PASSO A PASSO ── */}
       <section className="py-20 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <span className="text-orange-500 font-semibold text-sm uppercase tracking-widest">Guia prático</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-3">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-orange-500 text-center mt-2 mb-3">
             Como notificar um agravo
           </h2>
-          <p className="text-gray-600 text-lg mb-12">
+          <p className="text-gray-600 text-lg text-center mb-12">
             Siga este passo a passo sempre que atender um trabalhador com suspeita ou confirmação de agravo
             relacionado ao trabalho.
           </p>
@@ -567,13 +565,13 @@ export default function ParaProfissionais() {
 
                     <Card className={`flex-1 p-5 border-2 border-gray-100 hover:border-sky-200 shadow-sm hover:shadow-md transition-all mb-${isLast ? "0" : "0"}`}>
                       <div className="flex items-center gap-3 mb-2">
-                        <span className="text-xs font-black text-sky-300 tracking-widest">{passo.numero}</span>
+                        <span className="text-sm font-black text-sky-300 tracking-widest">{passo.numero}</span>
                         <h3 className="font-bold text-gray-900">{passo.titulo}</h3>
                       </div>
-                      <p className="text-sm text-gray-600 leading-relaxed mb-3">{passo.descricao}</p>
+                      <p className="text-gray-600 leading-relaxed mb-3">{passo.descricao}</p>
                       <div className="flex gap-2 p-3 bg-orange-100 rounded-lg">
                         <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0 mt-0.5" />
-                        <p className="text-xs text-orange-700 leading-relaxed">{passo.dica}</p>
+                        <p className="text-sm text-orange-700 leading-relaxed">{passo.dica}</p>
                       </div>
                     </Card>
                   </div>
@@ -586,7 +584,7 @@ export default function ParaProfissionais() {
 
       {/* ── PROTEÇÃO LEGAL ── */}
       <section className="py-20 px-6 bg-cyan-900">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-3 mb-3">
             <Gavel className="w-6 h-6 text-cyan-300" />
             <span className="text-cyan-300 font-semibold text-sm uppercase tracking-widest">Proteção Legal</span>
@@ -610,9 +608,9 @@ export default function ParaProfissionais() {
 
           <div className="grid sm:grid-cols-2 gap-6">
             {leis.map((lei, i) => (
-              <div key={i} className="bg-cyan-300/25 rounded-2xl p-5 hover:scale-103 transition duration-300">
-                <div className="text-cyan-300 font-bold text-sm mb-3">{lei.sigla}</div>
-                <p className="text-cyan-100 text-sm leading-relaxed">{lei.descricao}</p>
+              <div key={i} className="bg-cyan-300/25 rounded-3xl p-7 hover:scale-103 transition duration-300">
+                <div className="text-cyan-300 font-bold mb-3">{lei.sigla}</div>
+                <p className="text-cyan-100 leading-relaxed">{lei.descricao}</p>
               </div>
             ))}
           </div>
@@ -621,9 +619,8 @@ export default function ParaProfissionais() {
 
       {/* ── SINAN E CEREST: ACESSO RÁPIDO ── */}
       <section className="py-20 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <span className="text-sky-600 font-semibold text-sm uppercase tracking-widest">Acesso Rápido</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-2">SINAN e CEREST</h2>
           </div>
 
@@ -632,12 +629,12 @@ export default function ParaProfissionais() {
             <div className="rounded-3xl border-2 border-sky-200 overflow-hidden shadow-md">
               {/* Header */}
               <div className="bg-sky-50 px-6 py-4 flex items-center gap-4 border-b border-sky-200">
-                <div className="w-10 h-10 rounded-xl bg-white border border-sky-300 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-2xl bg-white border border-sky-300 flex items-center justify-center shrink-0">
                   <ClipboardList className="w-5 h-5 text-sky-500" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-sky-600">SINAN</h3>
-                  <p className="text-sm text-gray-500">Sistema de Informação de Agravos de Notificação</p>
+                  <h3 className="text-xl font-bold text-sky-600">SINAN</h3>
+                  <p className="text-gray-500">Sistema de Informação de Agravos de Notificação</p>
                 </div>
               </div>
 
@@ -645,20 +642,20 @@ export default function ParaProfissionais() {
               <div className="flex flex-col lg:flex-row">
                 {/* Esquerda: informações */}
                 <div className="lg:w-1/2 p-7 space-y-5 border-b lg:border-b-0 lg:border-r border-sky-100">
-                  <p className="text-gray-700 text-sm leading-relaxed">
+                  <p className="text-gray-700 leading-relaxed">
                     O SINAN é o sistema nacional do Ministério da Saúde destinado a coletar, transmitir e disseminar
                     dados gerados rotineiramente pelo Sistema de Vigilância Epidemiológica. Permite o acompanhamento
                     permanente da ocorrência de doenças e agravos relacionados ao trabalho em todo o território nacional.
                   </p>
                   <div>
-                    <h4 className="text-sky-700 font-semibold mb-6 flex items-center gap-2 text-sm">
+                    <h4 className="text-sky-700 font-semibold mb-6 flex items-center gap-2">
                       <BookOpen className="w-4 h-4" />
                       Objetivos do SINAN
                     </h4>
                     <ul className="space-y-4">
                       {sinanObjetivos.map((obj, i) => (
-                        <li key={i} className="flex gap-2 text-sm text-gray-700">
-                          <span className="w-5 h-5 rounded-full bg-sky-100 text-sky-700 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                        <li key={i} className="flex gap-2 text-gray-700">
+                          <span className="w-6 h-6 rounded-full bg-sky-100 text-sky-700 text-sm font-bold flex items-center justify-center shrink-0 mt-0.5">
                             {i + 1}
                           </span>
                           {obj}
@@ -670,7 +667,7 @@ export default function ParaProfissionais() {
                     href="https://portalsinan.saude.gov.br/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-sky-600 hover:underline active:underline active:opacity-70 mt-3"
+                    className="inline-flex items-center gap-2 font-semibold text-sky-600 hover:underline active:underline active:opacity-70 mt-3"
                   >
                     <ExternalLink className="w-4 h-4" />
                     Acessar Portal SINAN
@@ -685,7 +682,7 @@ export default function ParaProfissionais() {
                       href="https://portalsinan.saude.gov.br/images/documentos/Agravos/NINDIV/Notificacao_Individual_v5.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-sky-600 hover:bg-sky-700 active:bg-sky-800 active:duration-0 text-white text-sm font-semibold rounded-xl transition"
+                      className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-sky-600 hover:bg-sky-700 active:bg-sky-800 active:duration-0 text-white font-semibold rounded-xl transition"
                     >
                       <FileText className="w-4 h-4 shrink-0" />
                       Ficha de Notificação
@@ -694,10 +691,19 @@ export default function ParaProfissionais() {
                       href="https://portalsinan.saude.gov.br/images/documentos/Agravos/NINDIV/Ficha_conclusao_v5_instr.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-white hover:bg-sky-50 active:bg-sky-100 active:duration-0 text-sky-700 text-sm font-semibold rounded-xl border-2 border-sky-300 transition"
+                      className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-white hover:bg-sky-50 active:bg-sky-100 active:duration-0 text-sky-700 font-semibold rounded-xl border-2 border-sky-300 transition"
                     >
                       <BookOpen className="w-4 h-4 shrink-0" />
                       Instruções de Preenchimento
+                    </a>
+                    <a
+                      href="https://hiagowms.github.io/assistente-sinan/index.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-sky-400 hover:bg-sky-500 active:bg-sky-800 active:duration-0 text-white font-semibold rounded-xl transition"
+                    >
+                      <Form className="w-4 h-4 shrink-0" />
+                      Assistente SINAN
                     </a>
                   </div>
                 </div>
@@ -713,7 +719,7 @@ export default function ParaProfissionais() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-orange-600">CEREST</h3>
-                  <p className="text-sm text-gray-500">Centro de Referência em Saúde do Trabalhador</p>
+                  <p className="text-gray-500">Centro de Referência em Saúde do Trabalhador</p>
                 </div>
               </div>
 
@@ -726,19 +732,19 @@ export default function ParaProfissionais() {
 
                 {/* Direita: informações */}
                 <div className="lg:w-1/2 p-7 space-y-5">
-                  <p className="text-gray-700 text-sm leading-relaxed">
+                  <p className="text-gray-700 leading-relaxed">
                     Os CERESTs são unidades especializadas do SUS que integram a RENAST. Funcionam como polos de
                     referência técnica para toda a rede de saúde, orientando o diagnóstico, tratamento e vigilância dos
                     agravos relacionados ao trabalho.
                   </p>
                   <div>
-                    <h4 className="text-orange-700 font-semibold mb-3 flex items-center gap-2 text-sm">
+                    <h4 className="text-orange-600 font-semibold mb-3 flex items-center gap-2">
                       <ShieldCheck className="w-4 h-4" />
                       Principais atribuições do CEREST
                     </h4>
                     <ul className="space-y-3">
                       {cerestAtribuicoes.map((attr, i) => (
-                        <li key={i} className="flex gap-2 text-sm text-gray-700">
+                        <li key={i} className="flex gap-2 text-gray-700">
                           <span className="w-2 h-2 rounded-full bg-orange-400 shrink-0 mt-1.5" />
                           {attr}
                         </li>
@@ -752,7 +758,7 @@ export default function ParaProfissionais() {
                       <button
                         type="button"
                         onClick={copyEmail}
-                        className="ml-1 text-sm font-normal text-orange-600 hover:underline active:underline active:opacity-70 break-all text-left cursor-pointer"
+                        className="ml-1 text-sm text-orange-600 hover:underline active:underline active:opacity-70 break-all text-left cursor-pointer"
                         title="Clique para copiar"
                       >
                         cerest@botucatu.sp.gov.br
@@ -760,19 +766,19 @@ export default function ParaProfissionais() {
                     </div>
                     <div className="flex items-start gap-3">
                       <Phone className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
-                      <div className="text-sm text-gray-700 leading-relaxed">
+                      <div className="text-gray-700 text-sm leading-relaxed">
                         (14) 3811-1415 | (14) 99721 5043
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <MapPin className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
-                      <p className="text-sm text-gray-700 leading-relaxed">
+                      <p className="text-gray-700 text-sm leading-relaxed">
                         Rua João Passos, 2085, Lavapés | CEP: 18601-060
                       </p>
                     </div>
                     <div className="flex items-start gap-3">
                       <Clock className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
-                      <p className="text-sm text-gray-700 leading-relaxed">
+                      <p className="text-gray-700 text-sm leading-relaxed">
                         Seg. a Sex. - 07h30 às 17h
                       </p>
                     </div>
@@ -781,7 +787,7 @@ export default function ParaProfissionais() {
                     href="https://www.gov.br/saude/pt-br/composicao/svsa/cerest"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-orange-600 hover:underline active:underline active:opacity-70 mt-3"
+                    className="inline-flex items-center gap-2 font-semibold text-orange-600 hover:underline active:underline active:opacity-70 mt-3"
                   >
                     <ExternalLink className="w-4 h-4" />
                     Encontrar o CEREST da sua região
@@ -795,10 +801,9 @@ export default function ParaProfissionais() {
 
       {/* ── CAT / SINAN / RAAT: EXPANDABLE ── */}
       <section className="py-20 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <span className="text-orange-500 font-semibold text-sm uppercase tracking-widest">Instrumentos de Notificação</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-3">
+            <h2 className="text-3xl sm:text-4xl font-bold text-sky-700 mt-2 mb-3">
               CAT, SINAN e RAAT: entenda as diferenças
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -818,24 +823,24 @@ export default function ParaProfissionais() {
                 bgClass={inst.bgClass}
                 titleClass={inst.titleClass}
               >
-                <p className="text-gray-700 text-sm leading-relaxed">{inst.descricao}</p>
+                <p className="text-gray-700 leading-relaxed">{inst.descricao}</p>
 
                 <dl className="grid sm:grid-cols-2 gap-4">
-                  <div className="p-4 bg-gray-50 rounded-xl">
+                  <div className="p-4 bg-gray-50 rounded-2xl">
                     <dt className={`text-xs font-bold ${inst.titleClass} uppercase tracking-wider mb-1`}>Público-alvo</dt>
-                    <dd className="text-sm text-gray-700">{inst.publico}</dd>
+                    <dd className="text-gray-700">{inst.publico}</dd>
                   </div>
-                  <div className="p-4 bg-gray-50 rounded-xl">
+                  <div className="p-4 bg-gray-50 rounded-2xl">
                     <dt className={`text-xs font-bold ${inst.titleClass} uppercase tracking-wider mb-1`}>Responsável</dt>
-                    <dd className="text-sm text-gray-700">{inst.responsavel}</dd>
+                    <dd className="text-gray-700">{inst.responsavel}</dd>
                   </div>
-                  <div className="p-4 bg-gray-50 rounded-xl">
+                  <div className="p-4 bg-gray-50 rounded-2xl">
                     <dt className={`text-xs font-bold ${inst.titleClass} uppercase tracking-wider mb-1`}>Prazo</dt>
-                    <dd className="text-sm text-gray-700">{inst.prazo}</dd>
+                    <dd className="text-gray-700">{inst.prazo}</dd>
                   </div>
-                  <div className="p-4 bg-gray-50 rounded-xl">
+                  <div className="p-4 bg-gray-50 rounded-2xl">
                     <dt className={`text-xs font-bold ${inst.titleClass} uppercase tracking-wider mb-1`}>Legislação</dt>
-                    <dd className="text-sm text-gray-700">{inst.legislacao}</dd>
+                    <dd className="text-gray-700">{inst.legislacao}</dd>
                   </div>
                 </dl>
 
@@ -894,9 +899,9 @@ export default function ParaProfissionais() {
             <br />
             <span className="text-orange-400">salvar vidas.</span>
           </h2>
-          <p className="text-gray-300 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+          <p className="text-gray-300 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
             Cada notificação contribui para tornar visíveis os riscos no ambiente de trabalho. Sem dados, não há
-            diagnóstico. Sem diagnóstico, não há prevenção. Portanto, a mudança começa com a <span className="text-sky-400">sua notificação</span>.
+            diagnóstico. Sem diagnóstico, não há prevenção. Assim, a mudança começa com a <span className="text-sky-400">sua notificação</span>.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -923,7 +928,7 @@ export default function ParaProfissionais() {
 
       {/* ── FONTES ──
       <section className="py-16 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-gray-700 mb-6 flex items-center gap-2">
             <BookOpen className="w-5 h-5 text-sky-600" />
             Fontes e Referências

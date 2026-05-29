@@ -33,12 +33,12 @@ export function Hero() {
         </div>
         <div className="max-w-7xl w-full mx-auto px-6 pb-12 md:pb-18 pt-4 md:pt-0 flex flex-wrap gap-5 md:gap-7">
           <a href="#notificar">
-            <Button className="hidden sm:flex text-xl md:text-2xl px-6 md:px-8 py-7 md:py-9 bg-white text-orange-600 hover:bg-white/90 hover:scale-103 hover:-translate-y-1 md:rounded-3xl rounded-2xl drop-shadow-lg/80 cursor-pointer transition">
+            <Button className="hidden sm:flex text-xl md:text-2xl px-6 md:px-8 py-7 md:py-9 bg-white/90 text-orange-600 hover:bg-white/90 hover:-translate-y-1 md:rounded-3xl rounded-2xl drop-shadow-sm/80 cursor-pointer transition">
               Como notificar
             </Button>
           </a>
           <a href="#sobre">
-            <Button className="hidden sm:flex text-xl md:text-2xl px-6 md:px-8 py-7 md:py-9 text-white bg-sky-400/80 hover:bg-sky-400/80 hover:scale-103 hover:-translate-y-1 md:rounded-3xl rounded-xl drop-shadow-lg/80 cursor-pointer transition">
+            <Button className="hidden sm:flex text-xl md:text-2xl px-6 md:px-8 py-7 md:py-9 text-white bg-sky-400/80 hover:bg-sky-400/80 hover:-translate-y-1 md:rounded-3xl rounded-xl drop-shadow-sm/80 cursor-pointer transition">
               Saiba Mais
             </Button>
           </a>

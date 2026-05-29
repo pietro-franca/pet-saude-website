@@ -136,9 +136,9 @@ export default function SobreProjeto() {
             ].map((item, i) => (
               <div
                 key={i}
-                className="flex flex-col gap-4 p-6 bg-white rounded-2xl shadow hover:-translate-y-2 border border-transparent hover:border-orange-500 transition duration-300"
+                className="flex flex-col gap-4 p-6 bg-white rounded-3xl shadow hover:-translate-y-2 border border-transparent hover:border-orange-500 transition duration-300"
               >
-                <div className="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center">
                   <item.icon className="w-6 h-6 text-sky-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900">{item.titulo}</h3>
@@ -147,7 +147,7 @@ export default function SobreProjeto() {
             ))}
           </div>
 
-          <div className="grid gap-4 bg-white rounded-2xl shadow p-8 border border-gray-100">
+          <div className="grid gap-4 bg-white rounded-3xl shadow p-8 border border-gray-100">
             <p className="text-gray-700 text-lg leading-relaxed p-6">
               Criado em 2004 pelo Ministério da Saúde em parceria com o Ministério da Educação,
               o PET-Saúde já formou milhares de profissionais que atuam hoje em todo o país.
@@ -184,21 +184,21 @@ export default function SobreProjeto() {
               "Ferramenta digital para redução da mortalidade infantil em Botucatu",
               "Transformando o acesso à saúde: HCemCasa como ferramenta de integração e continuidade do cuidado",
               "EcoSUS digital: saúde, clima e transformação digital do SUS",
-              "Programa de triagem de retinopatia diabética por teleoftalmologia e inteligência artificial no município de Botucatu",
+              "Programa de triagem de retinopatia diabética por teleoftalmologia e inteligência artificial em Botucatu",
               "Pré-natal: soluções digitais para educação em saúde de gestantes",
               "Boletim epidemiológico da violência contra a mulher: mapeamento digital, prevenção e intervenção oportuna",
-              "Produção e difusão de informações digitais em saúde do(a) trabalhador(a) na atenção primária à saúde",
+              "Produção e difusão de informações digitais em saúde do trabalhador na atenção primária à saúde",
               "Ação Hygeia Digital: inovação na busca ativa para prevenção do câncer de colo do útero e mama",
             ].map((projeto, i) => (
               <div
                 key={i}
-                className={`p-6 bg-gray-50 rounded-2xl border border-transparent ${(i+ 1) % 2 == 0 ? "hover:border-orange-500" : (i + 1) == 7 ? "hover:border-emerald-500" : "hover:border-sky-500"} hover:bg-white hover:shadow hover:-translate-y-2 transition duration-300`}
+                className={`p-6 bg-gray-50 rounded-2xl border ${(i+ 1) % 2 == 0 ? "border-transparent hover:border-orange-500" : (i + 1) == 7 ? " border-sky-500" : "border-transparent hover:border-sky-500"} hover:bg-white hover:shadow hover:-translate-y-2 transition duration-300`}
               >
                 <div className="flex items-start gap-3">
-                  <div className={`py-1 px-3 ${(i+ 1) % 2 == 0 ? "bg-orange-100 text-orange-600" : (i + 1) == 7 ? "bg-emerald-100 text-emerald-500" : "bg-sky-100 text-sky-700"} font-bold rounded-lg flex items-center justify-center`}>
+                  <div className={`py-1 px-3 ${(i+ 1) % 2 == 0 ? "bg-orange-100 text-orange-600" : "bg-sky-100 text-sky-700"} font-bold rounded-lg flex items-center justify-center`}>
                     {i + 1}
                   </div>
-                  <p className={`${(i + 1) == 7 ? "font-semibold" : ""} text-gray-700 text-sm leading-relaxed`}>
+                  <p className={`${(i + 1) == 7 ? "font-semibold" : ""} text-gray-700 leading-relaxed`}>
                     {projeto}
                   </p>
                 </div>
@@ -244,12 +244,12 @@ export default function SobreProjeto() {
                   "O SUS funciona com equipes multiprofissionais. O PET-Saúde I&SD - Saúde do Trabalhador reúne estudantes de medicina, enfermagem, engenharia, computação e outras áreas, preparando-os para trabalhar de forma colaborativa em prol da melhoria do Sistema Único de Saúde.",
               },
             ].map((card, i) => (
-              <div key={i} className="bg-white/10 backdrop-blur rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition duration-300">
+              <div key={i} className="bg-white/10 backdrop-blur rounded-3xl p-6 border border-white/20 hover:bg-white/15 transition duration-300">
                 <div className="flex items-start gap-3 mb-3">
                   <ArrowRight className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
                   <h3 className="text-lg font-bold text-white">{card.titulo}</h3>
                 </div>
-                <p className="text-gray-300 leading-relaxed text-sm pl-8">{card.texto}</p>
+                <p className="text-gray-300 leading-relaxed pl-8">{card.texto}</p>
               </div>
             ))}
           </div>
@@ -274,9 +274,9 @@ export default function SobreProjeto() {
               { numero: "~50%", legenda: "dos casos estimados ainda não chegam ao sistema de saúde" },
               { numero: "1 em cada 3", legenda: "trabalhadores já teve algum problema de saúde relacionado ao trabalho" },
             ].map((stat, i) => (
-              <div key={i} className="text-center bg-white rounded-2xl shadow p-6 border border-gray-100">
-                <div className="text-4xl font-black text-orange-500 mb-2">{stat.numero}</div>
-                <div className="text-gray-600 text-sm leading-snug">{stat.legenda}</div>
+              <div key={i} className="text-center bg-white rounded-3xl hover:border-orange-500 shadow p-6 border border-gray-100 transition">
+                <div className="text-4xl font-bold text-orange-500 mb-2">{stat.numero}</div>
+                <div className="text-gray-600 leading-snug">{stat.legenda}</div>
               </div>
             ))}
           </div>
@@ -318,13 +318,13 @@ export default function SobreProjeto() {
             {objetivos.map((obj, i) => (
               <div
                 key={i}
-                className="flex flex-col gap-4 p-6 bg-gray-50 rounded-2xl hover:-translate-y-2 border border-transparent hover:border-sky-500 hover:bg-white hover:shadow transition duration-300"
+                className="flex flex-col gap-4 p-6 bg-gray-50 rounded-3xl hover:-translate-y-2 border border-transparent hover:border-sky-500 hover:bg-white hover:shadow transition duration-300"
               >
-                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-2xl flex items-center justify-center">
                   <obj.icon className="w-6 h-6 text-orange-600" />
                 </div>
-                <h3 className="text-base font-bold text-gray-900">{obj.titulo}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{obj.descricao}</p>
+                <h3 className="text-lgfont-semibold text-gray-900">{obj.titulo}</h3>
+                <p className="text-gray-600 leading-relaxed">{obj.descricao}</p>
               </div>
             ))}
           </div>
@@ -346,16 +346,16 @@ export default function SobreProjeto() {
             {ministerios.map((m, i) => (
               <div
                 key={i}
-                className={`flex flex-col gap-4 p-6 bg-white rounded-2xl shadow hover:-translate-y-2 border border-transparent ${m.borda} transition duration-300`}
+                className={`flex flex-col gap-4 p-6 bg-white rounded-3xl shadow hover:-translate-y-2 border border-transparent ${m.borda} transition duration-300`}
               >
-                <div className={`${m.bg} rounded-xl flex items-center justify-center`}>
+                <div className={`${m.bg} rounded-2xl flex items-center justify-center`}>
                   <img className={m.imagem == "/MS-img.png" ? "p-10" : ""} src={m.imagem} alt="" />
                 </div>
                 <div>
                   <span className={`text-xs font-bold tracking-widest uppercase ${m.cor}`}>{m.sigla}</span>
                   <h3 className="text-lg font-bold text-gray-900 mt-0.5">{m.nome}</h3>
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed">{m.descricao}</p>
+                <p className="text-gray-600 leading-relaxed">{m.descricao}</p>
               </div>
             ))}
           </div>
