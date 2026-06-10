@@ -33,7 +33,7 @@ export function NotificationGuide() {
     <section id="notificar" className="pt-24 pb-20 px-6 bg-white">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl mb-4 text-orange-600">Como Notificar um Acidente de Trabalho</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-orange-600">Como Notificar um Acidente de Trabalho</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             A notificação é fundamental para garantir seus direitos e contribuir para a melhoria
             das condições de trabalho no Brasil

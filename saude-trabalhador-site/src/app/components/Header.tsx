@@ -9,6 +9,7 @@ const navLinks = [
   { to: "/sobre", label: "Sobre o Projeto" },
   { to: "/para-profissionais", label: "Para Profissionais" },
   { to: isMobile ? "/ldrt/pwa/index.html" : "/ldrt", label: "LDRT", external: isMobile },
+  { to: "https://hiagowms.github.io/assistente-sinan/index.html", label: "Assistente SINAN" },
 ];
 
 export function Header() {
@@ -53,7 +54,7 @@ export function Header() {
 
           <nav className="hidden md:flex font-semibold text-lg items-center gap-8">
             {navLinks.map(({ to, label, external }) => {
-              const cls = `transition-colors duration-300 ${scrolled ? `${label === "LDRT" ? " font-bold text-orange-600 " : " text-sky-800 "} hover:text-sky-500` : `${label === "LDRT" ? " font-bold text-sky-400 hover:text-orange-500 " : " text-white/90 hover:text-sky-300 "} transition`}`;
+              const cls = `transition-colors duration-300 ${scrolled ? `${(label === "LDRT" || label === "Assistente SINAN") ? " font-bold text-orange-600 " : " text-sky-800 "} hover:text-sky-500` : `${(label === "LDRT" || label === "Assistente SINAN") ? " font-bold text-sky-400 hover:text-orange-500 " : " text-white/90 hover:text-sky-300 "} transition`}`;
               return external
                 ? <a key={label} href={to} className={cls}>{label}</a>
                 : <NavLink key={label} to={to} className={cls}>{label}</NavLink>;

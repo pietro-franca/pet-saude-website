@@ -542,11 +542,11 @@ export default function ParaProfissionais() {
       <section className="py-20 px-6 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-orange-500 text-center mt-2 mb-3">
-            Como notificar um agravo
+            Passo a passo de notificação
           </h2>
           <p className="text-gray-600 text-lg text-center mb-12">
-            Siga este passo a passo sempre que atender um trabalhador com suspeita ou confirmação de agravo
-            relacionado ao trabalho.
+            Siga esta sequência de passos sempre que atender um trabalhador com suspeita ou confirmação de agravo
+            relacionado ao trabalho:
           </p>
 
           <div className="space-y-6">
