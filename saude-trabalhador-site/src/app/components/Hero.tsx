@@ -5,12 +5,12 @@ export function Hero() {
     <section className="relative overflow-hidden md:h-screen">
       <div>
         <img
-          src="/pet-hero-1-largura-mobile.png"
+          src="/pet-hero-1.png"
           alt="Saúde do Trabalhador"
           className="brightness-50 md:hidden w-full h-auto md:absolute md:inset-0 md:h-full md:object-cover md:object-left"
         />
         <img
-          src="/pet-hero-1-largura.png"
+          src="/pet-hero-1.png"
           alt="Saúde do Trabalhador"
           className="brightness-50 hidden md:block w-full h-auto md:absolute md:inset-0 md:h-full md:object-cover md:object-left"
         />
