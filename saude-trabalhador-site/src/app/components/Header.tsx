@@ -78,7 +78,7 @@ export function Header() {
         >
           <nav className="flex flex-col gap-4 pt-4 pb-2">
             {navLinks.map(({ to, label, external }) => {
-              const cls = `font-semibold text-lg ${label === "LDRT" ? "text-orange-600" : "text-sky-800"} hover:text-sky-500 transition-colors`;
+              const cls = `font-semibold text-lg ${(label === "LDRT" || label === "Assistente SINAN") ? "text-orange-600" : "text-sky-800"} hover:text-sky-500 transition-colors`;
               return external
                 ? <a key={label} href={to} className={cls}>{label}</a>
                 : <NavLink key={label} to={to} onClick={() => setMenuOpen(false)} className={cls}>{label}</NavLink>;

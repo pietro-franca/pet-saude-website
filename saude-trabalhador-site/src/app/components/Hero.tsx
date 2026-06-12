@@ -10,7 +10,7 @@ export function Hero() {
           className="brightness-50 md:hidden w-full h-auto md:absolute md:inset-0 md:h-full md:object-cover md:object-left"
         />
         <img
-          src="/pet-hero-1.png"
+          src="/pet-hero-1-mobile.png"
           alt="Saúde do Trabalhador"
           className="brightness-50 hidden md:block w-full h-auto md:absolute md:inset-0 md:h-full md:object-cover md:object-left"
         />
