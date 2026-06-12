@@ -81,7 +81,7 @@ function WelcomePanel() {
             bg: "bg-teal-50",
             iconColor: "text-teal-700",
             title: "Notificação",
-            desc: "Agravos relacionados ao trabalho são de notificação compulsória no SINAN. A LDRT auxilia na identificação e no preenchimento das fichas.",
+            desc: "Alguns agravos relacionados ao trabalho são de notificação compulsória no SINAN. A LDRT auxilia na identificação e no preenchimento das fichas.",
           },
         ].map(({ icon: Icon, bg, iconColor, title, desc }) => (
           <div key={title} className="flex-1 bg-white border border-gray-200 rounded-xl p-5 text-left shadow-sm hover:scale-103 transition duration-300">
